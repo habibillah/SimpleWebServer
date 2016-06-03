@@ -15,6 +15,7 @@ namespace SimpleWebServer
         public SimpleWebServer()
         {
             InitializeComponent();
+            this.ServiceName = "SimpleWebServer";
         }
 
         protected override void OnStart(string[] args)
