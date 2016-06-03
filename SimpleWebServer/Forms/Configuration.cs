@@ -19,10 +19,35 @@ namespace SimpleWebServer.Forms
             InitializeComponent();
 
             Utility.LoadSetting();
+            this.txtFolderLocation.Text = CurrentSetting.Instance.directoryPath;
+            this.txtPortNumber.Text = CurrentSetting.Instance.port.ToString();
+
+            this.CheckServiceStatus();
+        }
+
+        private void CheckServiceStatus()
+        {
+            var isRun = Utility.ServiceIsRun();
+
+            foreach (Control control in this.Controls)
+            {
+                control.Enabled = !isRun;
+            }
+
+            if (isRun)
+            {
+                btnStop.Enabled = true;
+            }
+            else
+            {
+                btnStartServer.Enabled = true;
+                btnBrowse.Enabled = true;
+            }
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
         {
+            folderBrowserDialog.SelectedPath = CurrentSetting.Instance.directoryPath;
             var dialogResult = folderBrowserDialog.ShowDialog();
             if (dialogResult == DialogResult.OK || dialogResult == DialogResult.Yes)
             {
@@ -47,20 +72,31 @@ namespace SimpleWebServer.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            var setting = new Setting();
-            setting.directoryPath = txtFolderLocation.Text.Trim();
-
-            int port;
-            if (int.TryParse(txtPortNumber.Text, out port))
+            try
             {
-                setting.port = port;
-            }
-            else
-            {
-                setting.port = 8080;
-            }
+                var setting = new Setting();
+                setting.directoryPath = txtFolderLocation.Text.Trim();
 
-            Utility.SaveSetting(setting);
+                int port;
+                if (int.TryParse(txtPortNumber.Text, out port))
+                {
+                    setting.port = port;
+                }
+                else
+                {
+                    setting.port = 8080;
+                }
+
+                Utility.SaveSetting(setting);
+                btnSave.Enabled = false;
+
+                MessageBox.Show("Saving configuration success.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
     }
 }

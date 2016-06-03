@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\HttpRequestResponse.cs" />
+    <Compile Include="Classes\Server.cs" />
     <Compile Include="Classes\SimpleHttpRequest.cs" />
     <Compile Include="Classes\SimpleHttpServer.cs" />
     <Compile Include="Classes\Setting.cs" />

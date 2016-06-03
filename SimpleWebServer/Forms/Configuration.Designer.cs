@@ -59,6 +59,7 @@
             // 
             // txtPortNumber
             // 
+            this.txtPortNumber.Enabled = false;
             this.txtPortNumber.Location = new System.Drawing.Point(80, 31);
             this.txtPortNumber.Name = "txtPortNumber";
             this.txtPortNumber.Size = new System.Drawing.Size(52, 20);
@@ -74,6 +75,7 @@
             // 
             // txtFolderLocation
             // 
+            this.txtFolderLocation.BackColor = System.Drawing.SystemColors.Window;
             this.txtFolderLocation.Location = new System.Drawing.Point(80, 5);
             this.txtFolderLocation.Name = "txtFolderLocation";
             this.txtFolderLocation.ReadOnly = true;
@@ -84,6 +86,7 @@
             // 
             // btnBrowse
             // 
+            this.btnBrowse.Enabled = false;
             this.btnBrowse.Location = new System.Drawing.Point(295, 4);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(75, 23);
@@ -103,6 +106,7 @@
             // 
             // btnStop
             // 
+            this.btnStop.Enabled = false;
             this.btnStop.Location = new System.Drawing.Point(161, 57);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);

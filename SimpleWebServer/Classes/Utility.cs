@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,6 +28,17 @@ namespace SimpleWebServer.Classes
             }
         }
 
+        internal static bool ServiceIsRun()
+        {
+            ServiceController sc = new ServiceController(SimpleWebServer.SERVICE_NAME);
+            if (sc.Status == ServiceControllerStatus.Running)
+                return true;
+
+            if (sc.Status != ServiceControllerStatus.Stopped)
+                sc.Stop();
+
+            return false;
+        }
 
         /// <summary>
         /// Deserializes an xml file into an object list
