@@ -36,6 +36,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,7 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\HttpRequestResponse.cs" />
+    <Compile Include="Classes\SimpleHttpRequest.cs" />
+    <Compile Include="Classes\SimpleHttpServer.cs" />
     <Compile Include="Classes\Setting.cs" />
+    <Compile Include="Classes\CurrentSetting.cs" />
     <Compile Include="Classes\Utility.cs" />
     <Compile Include="Forms\Configuration.cs">
       <SubType>Form</SubType>

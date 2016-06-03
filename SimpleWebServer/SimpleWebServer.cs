@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleWebServer.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,6 +17,8 @@ namespace SimpleWebServer
         {
             InitializeComponent();
             this.ServiceName = "SimpleWebServer";
+
+            Utility.LoadSetting();
         }
 
         protected override void OnStart(string[] args)

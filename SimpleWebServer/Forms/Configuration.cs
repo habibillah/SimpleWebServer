@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,8 @@ namespace SimpleWebServer.Forms
         public Configuration()
         {
             InitializeComponent();
+
+            Utility.LoadSetting();
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -44,7 +47,20 @@ namespace SimpleWebServer.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            var setting = Setting.Instance;
+            var setting = new Setting();
+            setting.directoryPath = txtFolderLocation.Text.Trim();
+
+            int port;
+            if (int.TryParse(txtPortNumber.Text, out port))
+            {
+                setting.port = port;
+            }
+            else
+            {
+                setting.port = 8080;
+            }
+
+            Utility.SaveSetting(setting);
         }
     }
 }
