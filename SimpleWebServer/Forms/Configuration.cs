@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleWebServer.Classes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -43,7 +44,7 @@ namespace SimpleWebServer.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-
+            var setting = Setting.Instance;
         }
     }
 }

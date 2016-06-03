@@ -32,13 +32,20 @@ namespace SimpleWebServer.Classes
         /// <typeparam name="T"></typeparam>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        public T DeSerializeObject<T>(string filePath)
+        public static T DeSerializeObject<T>(string filePath)
         {
             using (Stream stream = File.Open(filePath, FileMode.Open))
             {
                 var binaryFormatter = new BinaryFormatter();
                 return (T)binaryFormatter.Deserialize(stream);
             }
+        }
+
+        public static string GetConfigurationFile()
+        {
+            string rootDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            string appDir = "";
+            Path.Combine(directory, )
         }
     }
 }
