@@ -47,6 +47,7 @@
             this.configurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
+            this.showLogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -161,10 +162,11 @@
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.startServerToolStripMenuItem,
             this.stopServerToolStripMenuItem,
+            this.showLogsToolStripMenuItem,
             this.configurationToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(149, 92);
+            this.contextMenuStrip.Size = new System.Drawing.Size(153, 136);
             // 
             // startServerToolStripMenuItem
             // 
@@ -200,6 +202,13 @@
             this.imageList.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList.Images.SetKeyName(0, "off.ico");
             this.imageList.Images.SetKeyName(1, "on.ico");
+            // 
+            // showLogsToolStripMenuItem
+            // 
+            this.showLogsToolStripMenuItem.Name = "showLogsToolStripMenuItem";
+            this.showLogsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.showLogsToolStripMenuItem.Text = "Show Logs";
+            this.showLogsToolStripMenuItem.Click += new System.EventHandler(this.showLogsToolStripMenuItem_Click);
             // 
             // Configuration
             // 
@@ -249,5 +258,6 @@
         private System.Windows.Forms.ToolStripMenuItem configurationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ImageList imageList;
+        private System.Windows.Forms.ToolStripMenuItem showLogsToolStripMenuItem;
     }
 }

@@ -93,10 +93,11 @@ namespace SimpleWebServer.Classes
         public void WriteLog(string eventMessage)
         {
             var logFile = Utility.GetLogFile();
-            using (Stream stream = File.Open(logFile, FileMode.Append))
+            using (var fs = new FileStream(logFile, FileMode.Open, FileAccess.Write, FileShare.ReadWrite))
+            using (var writer = new StreamWriter(fs))
             {
-                var writer = new StreamWriter(stream);
                 writer.WriteLine(eventMessage);
+                writer.AutoFlush = true;
             }
         }
 

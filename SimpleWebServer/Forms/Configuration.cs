@@ -198,5 +198,10 @@ namespace SimpleWebServer.Forms
 
             this.Show();
         }
+
+        private void showLogsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
