@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Configuration));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtPortNumber = new System.Windows.Forms.TextBox();
@@ -38,6 +40,14 @@
             this.btnStop = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtIPAddress = new System.Windows.Forms.TextBox();
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.startServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stopServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageList = new System.Windows.Forms.ImageList(this.components);
+            this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -137,6 +147,60 @@
             this.txtIPAddress.TabIndex = 8;
             this.txtIPAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // notifyIcon
+            // 
+            this.notifyIcon.BalloonTipText = "Just Allow HTTP GET Method";
+            this.notifyIcon.BalloonTipTitle = "Simple Web Server";
+            this.notifyIcon.ContextMenuStrip = this.contextMenuStrip;
+            this.notifyIcon.Text = "Simple Web Server";
+            this.notifyIcon.Visible = true;
+            this.notifyIcon.DoubleClick += new System.EventHandler(this.notifyIcon_DoubleClick);
+            // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.startServerToolStripMenuItem,
+            this.stopServerToolStripMenuItem,
+            this.configurationToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(149, 92);
+            // 
+            // startServerToolStripMenuItem
+            // 
+            this.startServerToolStripMenuItem.Name = "startServerToolStripMenuItem";
+            this.startServerToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.startServerToolStripMenuItem.Text = "Start Server";
+            this.startServerToolStripMenuItem.Click += new System.EventHandler(this.startServiceToolStripMenuItem_Click);
+            // 
+            // stopServerToolStripMenuItem
+            // 
+            this.stopServerToolStripMenuItem.Name = "stopServerToolStripMenuItem";
+            this.stopServerToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.stopServerToolStripMenuItem.Text = "Stop Server";
+            this.stopServerToolStripMenuItem.Click += new System.EventHandler(this.stopServerToolStripMenuItem_Click);
+            // 
+            // configurationToolStripMenuItem
+            // 
+            this.configurationToolStripMenuItem.Name = "configurationToolStripMenuItem";
+            this.configurationToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.configurationToolStripMenuItem.Text = "Configuration";
+            this.configurationToolStripMenuItem.Click += new System.EventHandler(this.configurationToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // imageList
+            // 
+            this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
+            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList.Images.SetKeyName(0, "off.ico");
+            this.imageList.Images.SetKeyName(1, "on.ico");
+            // 
             // Configuration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -151,14 +215,16 @@
             this.Controls.Add(this.txtPortNumber);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Configuration";
-            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Configuration";
+            this.Text = "Simple Web Server Configuration";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Configuration_FormClosing);
+            this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,5 +242,12 @@
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox txtIPAddress;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem startServerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stopServerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem configurationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ImageList imageList;
     }
 }

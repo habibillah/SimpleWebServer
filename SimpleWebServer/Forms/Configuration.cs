@@ -26,6 +26,8 @@ namespace SimpleWebServer.Forms
             this.txtIPAddress.Text = Utility.GetLocalIP().ToString();
 
             this.BuildControlState();
+
+            this.Hide();
         }
 
         private void BuildControlState()
@@ -40,12 +42,24 @@ namespace SimpleWebServer.Forms
             if (isRun)
             {
                 btnStop.Enabled = true;
+
+                this.Icon = Icon.FromHandle(((Bitmap)imageList.Images["on.ico"]).GetHicon());
+                notifyIcon.Icon = Icon.FromHandle(((Bitmap)imageList.Images["on.ico"]).GetHicon());
+
+                startServerToolStripMenuItem.Enabled = false;
+                stopServerToolStripMenuItem.Enabled = true;
             }
             else
             {
                 btnStartServer.Enabled = true;
                 btnBrowse.Enabled = true;
                 txtPortNumber.Enabled = true;
+
+                this.Icon = Icon.FromHandle(((Bitmap)imageList.Images["off.ico"]).GetHicon());
+                notifyIcon.Icon = Icon.FromHandle(((Bitmap)imageList.Images["off.ico"]).GetHicon());
+
+                startServerToolStripMenuItem.Enabled = true;
+                stopServerToolStripMenuItem.Enabled = false;
             }
         }
 
@@ -103,7 +117,7 @@ namespace SimpleWebServer.Forms
             
         }
 
-        private void btnStartServer_Click(object sender, EventArgs e)
+        private void StartServer()
         {
             try
             {
@@ -117,7 +131,12 @@ namespace SimpleWebServer.Forms
             }
         }
 
-        private void btnStop_Click(object sender, EventArgs e)
+        private void btnStartServer_Click(object sender, EventArgs e)
+        {
+            this.StartServer();    
+        }
+
+        private void StopServer()
         {
             try
             {
@@ -128,6 +147,56 @@ namespace SimpleWebServer.Forms
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            this.StopServer();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if ((this.server != null) && (this.server.IsAlive))
+                this.server.Stop();
+
+            Application.ExitThread();
+        }
+
+        private void startServiceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.StartServer();
+        }
+
+        private void stopServerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.StopServer();
+        }
+
+        private void configurationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ShowConfigurationForm();
+        }
+
+        private void notifyIcon_DoubleClick(object sender, EventArgs e)
+        {
+            this.ShowConfigurationForm();
+        }
+
+        private void Configuration_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Hide();
+            }
+        }
+
+        private void ShowConfigurationForm()
+        {
+            this.WindowState = FormWindowState.Normal;
+            this.ShowInTaskbar = true;
+
+            this.Show();
         }
     }
 }
