@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
@@ -77,6 +78,8 @@ namespace SimpleWebServer.Classes
         {
             listener.Stop();
             this.Thread.Abort();
+            while (this.Thread.ThreadState != ThreadState.Aborted)
+                Thread.Sleep(20);
         }
         
         public bool IsAlive

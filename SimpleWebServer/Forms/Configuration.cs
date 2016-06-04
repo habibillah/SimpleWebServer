@@ -14,6 +14,8 @@ namespace SimpleWebServer.Forms
 {
     public partial class Configuration : Form
     {
+        private SimpleHttpServer server;
+
         public Configuration()
         {
             InitializeComponent();
@@ -21,17 +23,18 @@ namespace SimpleWebServer.Forms
             Utility.LoadSetting();
             this.txtFolderLocation.Text = CurrentSetting.Instance.directoryPath;
             this.txtPortNumber.Text = CurrentSetting.Instance.port.ToString();
+            this.txtIPAddress.Text = Utility.GetLocalIP().ToString();
 
-            this.CheckServiceStatus();
+            this.BuildControlState();
         }
 
-        private void CheckServiceStatus()
+        private void BuildControlState()
         {
-            var isRun = Utility.ServiceIsRun();
+            var isRun = this.server != null && this.server.IsAlive;
 
             foreach (Control control in this.Controls)
             {
-                control.Enabled = !isRun;
+                control.Enabled = false;
             }
 
             if (isRun)
@@ -42,6 +45,7 @@ namespace SimpleWebServer.Forms
             {
                 btnStartServer.Enabled = true;
                 btnBrowse.Enabled = true;
+                txtPortNumber.Enabled = true;
             }
         }
 
@@ -97,6 +101,33 @@ namespace SimpleWebServer.Forms
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
+        }
+
+        private void btnStartServer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.server = new Server(CurrentSetting.Instance.directoryPath, CurrentSetting.Instance.port);
+                this.server.Start();
+                this.BuildControlState();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.server.Stop();
+                this.BuildControlState();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

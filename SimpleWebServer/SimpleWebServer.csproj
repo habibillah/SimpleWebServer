@@ -60,12 +60,6 @@
     <Compile Include="Forms\Configuration.Designer.cs">
       <DependentUpon>Configuration.cs</DependentUpon>
     </Compile>
-    <Compile Include="SimpleWebServer.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="SimpleWebServer.Designer.cs">
-      <DependentUpon>SimpleWebServer.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

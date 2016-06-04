@@ -10,6 +10,8 @@ namespace SimpleWebServer.Classes
 {
     public class Server : SimpleHttpServer
     {
+        public static readonly string SERVICE_NAME = "SimpleWebServer";
+
         private string webroot;
 
         public Server(string webroot, int port) : base(port)

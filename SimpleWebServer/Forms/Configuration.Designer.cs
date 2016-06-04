@@ -37,6 +37,7 @@
             this.btnStartServer = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.txtIPAddress = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -60,7 +61,7 @@
             // txtPortNumber
             // 
             this.txtPortNumber.Enabled = false;
-            this.txtPortNumber.Location = new System.Drawing.Point(80, 31);
+            this.txtPortNumber.Location = new System.Drawing.Point(184, 31);
             this.txtPortNumber.Name = "txtPortNumber";
             this.txtPortNumber.Size = new System.Drawing.Size(52, 20);
             this.txtPortNumber.TabIndex = 2;
@@ -71,7 +72,7 @@
             // folderBrowserDialog
             // 
             this.folderBrowserDialog.Description = "Select web server folder location";
-            this.folderBrowserDialog.RootFolder = System.Environment.SpecialFolder.MyDocuments;
+            this.folderBrowserDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
             // 
             // txtFolderLocation
             // 
@@ -103,6 +104,7 @@
             this.btnStartServer.TabIndex = 5;
             this.btnStartServer.Text = "Start";
             this.btnStartServer.UseVisualStyleBackColor = true;
+            this.btnStartServer.Click += new System.EventHandler(this.btnStartServer_Click);
             // 
             // btnStop
             // 
@@ -113,6 +115,7 @@
             this.btnStop.TabIndex = 6;
             this.btnStop.Text = "Stop";
             this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // btnSave
             // 
@@ -125,11 +128,21 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // txtIPAddress
+            // 
+            this.txtIPAddress.Enabled = false;
+            this.txtIPAddress.Location = new System.Drawing.Point(80, 31);
+            this.txtIPAddress.Name = "txtIPAddress";
+            this.txtIPAddress.Size = new System.Drawing.Size(98, 20);
+            this.txtIPAddress.TabIndex = 8;
+            this.txtIPAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // Configuration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(379, 88);
+            this.Controls.Add(this.txtIPAddress);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnStartServer);
@@ -162,5 +175,6 @@
         private System.Windows.Forms.Button btnStartServer;
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.TextBox txtIPAddress;
     }
 }

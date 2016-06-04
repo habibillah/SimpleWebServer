@@ -30,7 +30,7 @@ namespace SimpleWebServer.Classes
 
         internal static bool ServiceIsRun()
         {
-            ServiceController sc = new ServiceController(SimpleWebServer.SERVICE_NAME);
+            ServiceController sc = new ServiceController(Server.SERVICE_NAME);
             if (sc.Status == ServiceControllerStatus.Running)
                 return true;
 
@@ -58,7 +58,7 @@ namespace SimpleWebServer.Classes
         public static string GetLocalAppDirectory()
         {
             string rootDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            string appDir = Path.Combine(rootDir, "SimpleWebServer");
+            string appDir = Path.Combine(rootDir, Server.SERVICE_NAME);
             if (!Directory.Exists(appDir))
             {
                 Directory.CreateDirectory(appDir);
@@ -105,16 +105,11 @@ namespace SimpleWebServer.Classes
 
         public static IPAddress GetLocalIP()
         {
-            var host = Dns.GetHostEntry(Dns.GetHostName());
-            foreach (var ip in host.AddressList)
-            {
-                if (ip.AddressFamily == AddressFamily.InterNetwork)
-                {
-                    return ip;
-                }
-            }
+            IPAddress[] ipAddresses = Dns.GetHostAddresses("localhost");
 
-            throw new Exception("Local IP Address Not Found!");
+            IPAddress ip = ipAddresses.Where(x => x.AddressFamily == AddressFamily.InterNetwork).FirstOrDefault();
+
+            return ip;
         }
     }
 }
